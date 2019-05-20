@@ -21,7 +21,7 @@ class TaskManager: TaskManagerSyncActions {
             var catchError: Error?
 
             defer {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5, execute: {
                     handler(results, catchError)
                 })
             }
@@ -41,7 +41,7 @@ class TaskManager: TaskManagerSyncActions {
     }
 
     func synchronized(_ tasks: [TaskItem], completionHandler handler: @escaping ((Error?) -> Void)) {
-        dispatchQueue.asyncAfter(deadline: .now() + 3) { [unowned self] in
+        dispatchQueue.asyncAfter(deadline: .now() + 1.5) { [unowned self] in
             do {
                 let data = try JSONEncoder().encode(tasks)
                 try data.write(to: URL(fileURLWithPath: self.filepath), options: .atomic)

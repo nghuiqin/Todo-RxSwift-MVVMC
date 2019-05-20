@@ -10,6 +10,6 @@ import Foundation
 
 struct TaskItem: Codable {
     let title: String
-    let checked: Bool
+    var checked: Bool
     let createdAt: Date
 }

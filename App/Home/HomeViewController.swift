@@ -28,6 +28,11 @@ class HomeViewController: UIViewController {
         return addItem
     }()
 
+    private lazy var indicatorView: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView(style: .gray)
+        return indicator
+    }()
+
     private let viewModel: HomeViewModel
     private let bag: DisposeBag
 
@@ -62,14 +67,39 @@ class HomeViewController: UIViewController {
 
         // Add navigation item
         navigationItem.rightBarButtonItem = addBarItem
+
+        // loading navigation item
+        let indicatorItem = UIBarButtonItem(customView: indicatorView)
+        navigationItem.leftBarButtonItem = indicatorItem
     }
 
     private func setupBinds() {
-        viewModel.outputs.todoItems
+        let outputs = viewModel.outputs
+        let inputs = viewModel.inputs
+
+        outputs.todoItems
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items(cellIdentifier: "Cell")) { _, model, cell in
-                cell.textLabel?.text = model
+            .drive(tableView.rx.items(
+                cellIdentifier: "Cell",
+                cellType: HomeTableViewCell.self)) { _, task, cell in
+                cell.setupContent(with: task)
             }
+            .disposed(by: bag)
+
+        outputs.isLoading
+            .map { !$0 }
+            .drive(addBarItem.rx.isEnabled)
+            .disposed(by: bag)
+
+        outputs.isLoading
+            .drive(indicatorView.rx.isAnimating)
+            .disposed(by: bag)
+
+        outputs.hasError
+            .drive(onNext: { [weak self] errorMessage in
+                self?.showErrorAlert(errorMessage)
+
+            })
             .disposed(by: bag)
 
         addBarItem.rx.tap
@@ -78,11 +108,27 @@ class HomeViewController: UIViewController {
             })
             .disposed(by: bag)
 
-        tableView.rx.setDelegate(self)
+        rx.sentMessage(#selector(viewWillAppear(_:)))
+            .map { _ in () }
+            .bind(to: inputs.refreshTrigger)
+            .disposed(by: bag)
+
+        tableView.rx.itemSelected
+            .map { $0.row }
+            .bind(to: inputs.toggleTodoAction)
             .disposed(by: bag)
     }
 
     // MARK: Alerts
+    private func showErrorAlert(_ errorString: String) {
+        let alertController = UIAlertController(title: "Error", message: errorString, preferredStyle: .alert)
+
+        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true, completion: nil)
+    }
+
     private func showAddTodoAlert() {
         let alertController = UIAlertController(title: "Add Todo", message: "Insert your todo name", preferredStyle: .alert)
 
@@ -101,16 +147,5 @@ class HomeViewController: UIViewController {
             textField.placeholder = "Todo name"
         }
         present(alertController, animated: true, completion: nil)
-    }
-}
-
-extension HomeViewController: UITableViewDelegate {
-
-    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
     }
 }
