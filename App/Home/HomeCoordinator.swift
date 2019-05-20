@@ -8,15 +8,17 @@
 
 import UIKit
 
-class HomeCoordinator: Coordinator<UINavigationController> {
+class HomeCoordinator: Coordinator<UINavigationController>, CoordinatorDependency {
 
-    private (set) var viewController: UIViewController!
+    private(set) var viewController: UIViewController!
+
+    var dependency: AppDependency?
 
     override func start() {
         if started {
             return
         }
-        let viewModel = HomeViewModel()
+        let viewModel = HomeViewModel(taskManager: dependency!.taskManager)
         let vc = HomeViewController(viewModel: viewModel)
         viewController = vc
         show(viewController: viewController)

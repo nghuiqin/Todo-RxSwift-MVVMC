@@ -21,6 +21,10 @@
 		37AC865D22916033005B3552 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC865C22916033005B3552 /* HomeViewController.swift */; };
 		37AC865F22916674005B3552 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC865E22916674005B3552 /* HomeViewModel.swift */; };
 		37AC866222916AA4005B3552 /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37AC866122916AA4005B3552 /* HomeTableViewCell.swift */; };
+		37B9E66D22925157002AB639 /* TaskItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9E66C22925157002AB639 /* TaskItem.swift */; };
+		37B9E66F22925215002AB639 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9E66E22925215002AB639 /* TaskManager.swift */; };
+		37B9E6712292523B002AB639 /* TaskManagerSyncActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9E6702292523B002AB639 /* TaskManagerSyncActions.swift */; };
+		37B9E67322925530002AB639 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B9E67222925530002AB639 /* AppDependency.swift */; };
 		A171C059DD5CBF9EB70B268D /* Pods_RxSwift_TodoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82B2A49CF4B5BE1DFD9C8AA /* Pods_RxSwift_TodoUITests.framework */; };
 		CF02F01412F010CDB3449832 /* Pods_RxSwift_TodoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3D483D44DBD9BF03EF779C0 /* Pods_RxSwift_TodoTests.framework */; };
 /* End PBXBuildFile section */
@@ -62,6 +66,10 @@
 		37AC865C22916033005B3552 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		37AC865E22916674005B3552 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		37AC866122916AA4005B3552 /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
+		37B9E66C22925157002AB639 /* TaskItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskItem.swift; sourceTree = "<group>"; };
+		37B9E66E22925215002AB639 /* TaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		37B9E6702292523B002AB639 /* TaskManagerSyncActions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskManagerSyncActions.swift; sourceTree = "<group>"; };
+		37B9E67222925530002AB639 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		44767C6849908359AA74453D /* Pods_RxSwift_Todo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxSwift_Todo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7642A448E2B792D79DA5F06A /* Pods-RxSwift-Todo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwift-Todo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo.debug.xcconfig"; sourceTree = "<group>"; };
 		A996760EA229AF7CF7E5DBC1 /* Pods-RxSwift-TodoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxSwift-TodoTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -129,6 +137,8 @@
 		37AC862022915D15005B3552 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				37B9E66B22925030002AB639 /* Manager */,
+				37B9E66A2292502A002AB639 /* Model */,
 				37AC866022916838005B3552 /* Home */,
 			);
 			path = App;
@@ -157,6 +167,7 @@
 			children = (
 				37AC862122915D15005B3552 /* AppDelegate.swift */,
 				37AC865822915F4F005B3552 /* AppCoordinator.swift */,
+				37B9E67222925530002AB639 /* AppDependency.swift */,
 			);
 			path = AppDelegate;
 			sourceTree = "<group>";
@@ -190,6 +201,23 @@
 				37AC865E22916674005B3552 /* HomeViewModel.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		37B9E66A2292502A002AB639 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				37B9E66C22925157002AB639 /* TaskItem.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		37B9E66B22925030002AB639 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				37B9E66E22925215002AB639 /* TaskManager.swift */,
+				37B9E6702292523B002AB639 /* TaskManagerSyncActions.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		5A29D29CF48DF4177B069A26 /* Pods */ = {
@@ -370,7 +398,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
@@ -389,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2453204832036F076AD8A6F /* [CP] Check Pods Manifest.lock */ = {
@@ -416,7 +444,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
@@ -427,7 +455,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7F60C5C351BF261C4C046D5 /* [CP] Check Pods Manifest.lock */ = {
@@ -456,14 +484,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				37AC865922915F4F005B3552 /* AppCoordinator.swift in Sources */,
+				37B9E66D22925157002AB639 /* TaskItem.swift in Sources */,
 				37AC865522915E8F005B3552 /* Coordinator.swift in Sources */,
+				37B9E66F22925215002AB639 /* TaskManager.swift in Sources */,
 				37AC865422915E8F005B3552 /* Coordinating.swift in Sources */,
 				37AC865F22916674005B3552 /* HomeViewModel.swift in Sources */,
 				37AC862222915D15005B3552 /* AppDelegate.swift in Sources */,
+				37B9E67322925530002AB639 /* AppDependency.swift in Sources */,
 				37AC865B22915F77005B3552 /* HomeCoordinator.swift in Sources */,
 				37AC866222916AA4005B3552 /* HomeTableViewCell.swift in Sources */,
 				37AC865D22916033005B3552 /* HomeViewController.swift in Sources */,
 				37AC865622915E8F005B3552 /* NavigationDelegateProxy.swift in Sources */,
+				37B9E6712292523B002AB639 /* TaskManagerSyncActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

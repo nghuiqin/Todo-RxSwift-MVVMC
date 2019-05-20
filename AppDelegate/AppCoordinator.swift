@@ -11,6 +11,7 @@ import UIKit
 class AppCoordinator: Coordinator<UINavigationController> {
 
     private let delegateProxy: NavigationDelegateProxy
+    private let dependency = AppDependency()
 
     required init(viewController: UINavigationController) {
         delegateProxy = NavigationDelegateProxy()
@@ -21,7 +22,7 @@ class AppCoordinator: Coordinator<UINavigationController> {
 
     override func start() {
         let rootViewCoordinator = HomeCoordinator(viewController: rootViewController)
-//        rootViewCoordinator.appDependency = dependency
+        rootViewCoordinator.dependency = dependency
         startChild(coordinator: rootViewCoordinator)
         super.start()
     }
