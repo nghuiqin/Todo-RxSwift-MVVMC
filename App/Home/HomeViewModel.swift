@@ -85,7 +85,7 @@ class HomeViewModel: HomeViewModelType, HomeViewModelInput, HomeViewModelOutput 
             })
             .share()
 
-        self.items
+        items
             .filter { !$0.isEmpty }
             .flatMapLatest { items -> Observable<Bool> in
                 return Observable.create({ subscriber in
@@ -125,7 +125,7 @@ class HomeViewModel: HomeViewModelType, HomeViewModelInput, HomeViewModelOutput 
     }
 
     private func bindTodoAction() {
-        self.inputs.addTodoAction
+        addTodoAction
             .subscribe(onNext: { [unowned self] todoName in
                 let task = TaskItem(
                     title: todoName,
@@ -136,7 +136,7 @@ class HomeViewModel: HomeViewModelType, HomeViewModelInput, HomeViewModelOutput 
             })
             .disposed(by: bag)
 
-        self.inputs.toggleTodoAction
+        toggleTodoAction
             .subscribe(onNext: { [unowned self] index in
                 var currentItems = self.items.value
                 guard index < currentItems.count else { return }
