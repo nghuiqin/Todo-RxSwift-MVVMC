@@ -60,13 +60,9 @@ class HomeViewModel: HomeViewModelType, HomeViewModelInput, HomeViewModelOutput 
     var inputs: HomeViewModelInput { return self }
     var outputs: HomeViewModelOutput { return self }
 
-    init(taskManager: TaskManager) {
-        let requestTasks = self.loading
-            .sample(refreshTrigger)
-            .flatMap { isLoading -> Observable<[TaskItem]> in
-                if isLoading {
-                    return Observable.empty()
-                }
+    init(taskManager: TaskManagerSyncActions) {
+        let requestTasks = refreshTrigger
+            .flatMapLatest { _ -> Observable<[TaskItem]> in
                 return Observable.create({ subscriber in
                     taskManager.retrieveTaskItems(completionHandler: { items, error in
                         guard
@@ -87,8 +83,10 @@ class HomeViewModel: HomeViewModelType, HomeViewModelInput, HomeViewModelOutput 
                 self.errorSubject.onNext(error)
                 return .empty()
             })
+            .share()
 
         self.items
+            .filter { !$0.isEmpty }
             .flatMapLatest { items -> Observable<Bool> in
                 return Observable.create({ subscriber in
                     subscriber.onNext(false)

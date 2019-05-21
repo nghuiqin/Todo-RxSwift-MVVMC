@@ -398,7 +398,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
@@ -417,7 +417,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSwift-Todo/Pods-RxSwift-Todo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E2453204832036F076AD8A6F /* [CP] Check Pods Manifest.lock */ = {
@@ -444,7 +444,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxTest/RxTest.framework",
 			);
@@ -455,7 +455,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxSwift-TodoTests/Pods-RxSwift-TodoTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E7F60C5C351BF261C4C046D5 /* [CP] Check Pods Manifest.lock */ = {
