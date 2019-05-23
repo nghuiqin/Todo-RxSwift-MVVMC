@@ -17,7 +17,7 @@ class TaskManager: TaskManagerSyncActions {
 
     func retrieveTaskItems(completionHandler handler: @escaping (([TaskItem]?, Error?) -> Void)) {
         dispatchQueue.async { [unowned self] in
-            var results: [TaskItem]?
+            var results: [TaskItem] = []
             var catchError: Error?
 
             defer {
